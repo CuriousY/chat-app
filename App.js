@@ -1,28 +1,50 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-import { Provider } from 'react-redux'
-import store from './app/store'
+import React, { Component } from 'react';
+import {
+  ActivityIndicator,
+  AsyncStorage,
+  Button,
+  StatusBar,
+  StyleSheet,
+  View,
+} from 'react-native';
+import { Provider } from 'react-redux';
+import store from './app/store';
 
-import LoginComponent from './app/containers/login';
+import { StackNavigator, SwitchNavigator } from 'react-navigation'; // Version can be specified in package.json
 
-export default class App extends React.Component {
+import WelcomeScreen from './app/containers/welcome';
+import SignUpScreen from './app/containers/signup';
+import HomeScreen from './app/containers/home';
+import ImageUploadScreen from './app/containers/imageupload'
+
+
+class OtherScreen extends React.Component {
+
+}
+
+
+const AppStack = StackNavigator({ Home: HomeScreen, Other: OtherScreen });
+const AuthStack = StackNavigator({ SignUp: SignUpScreen, ImageUpload: ImageUploadScreen });
+
+const AppNavigator = SwitchNavigator(
+  {
+    WelcomeScreen: WelcomeScreen,
+    App: AppStack,
+    Auth: AuthStack,
+  },
+  {
+    initialRouteName: 'WelcomeScreen',
+  }
+);
+
+class Root extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <LoginComponent />
-        </View>
+        <AppNavigator />
       </Provider>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#d1c4e9',
-    justifyContent: 'center'
-  },
-});
-
+export default Root;

@@ -3,11 +3,13 @@ import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchUser, setUser } from '../actions'
+import { fetchUser, setUser } from '../actions';
+import stylesheet from '../styles/signUpStyle';
 
+
+const styles = StyleSheet.create(stylesheet());
 
 class LoginComponent extends React.Component {
-
     constructor(props) {
         super(props);
         this.addUser = this.addUser.bind(this);
@@ -45,35 +47,4 @@ function mapStateToProps(state) {
         user: state.userReducer.user
     }
 }
-
-const styles = StyleSheet.create({
-    headermain: {
-        backgroundColor: '#F3E5F5',
-        height: 100,
-        flex: 0,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-
-    },
-    txtName: {
-        height: 40,
-        color: '#4a148c',
-        fontSize: 20,
-        backgroundColor: '#fff',
-        width: 260,
-        padding: 5,
-        marginLeft: 5,
-        borderColor: 'gray',
-        borderWidth: 1
-    },
-    buttonEnter: {
-    },
-    btnContainer: {
-        width: 80,
-        marginRight: 5
-    }
-});
-
-
 export default connect(mapStateToProps, { setUser })(LoginComponent)

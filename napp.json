@@ -1,0 +1,12 @@
+{
+    "expo": {
+      "sdkVersion": "26.0.0",
+      "android":{
+        "package":"com.nitesh.demo",
+        "versionCode" : 1,
+        "permissions":[],
+        "icon":"./app_icon.png"
+  
+      }
+    }
+  }

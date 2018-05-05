@@ -1,0 +1,8 @@
+
+// ,
+//     "android":{
+//       "package":"com.nitesh.demo",
+//       "versionCode" : 1,
+//       "permissions":[]
+    
+//     }
