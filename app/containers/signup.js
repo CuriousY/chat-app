@@ -34,7 +34,7 @@ class SignUpScreen extends Component {
         });
     }
     componentWillReceiveProps(props) {
-        if(props.user.is_signup_complete){
+        if (props.user.is_signup_complete) {
             this.props.navigation.navigate('ImageUpload');
         }
     }
@@ -47,7 +47,20 @@ class SignUpScreen extends Component {
             username: this.state.username,
             mobile: this.state.mobile
         }
+
         this.props.setUser(user);
+        this.setMobileInAsyncStorage(this.state.mobile);
+    }
+
+
+    setMobileInAsyncStorage = async (mobile) => {
+        try {
+            console.log('set mobile ', mobile);
+            await AsyncStorage.setItem('mobile', mobile);
+        }
+        catch (err) {
+            console.log('err ', err);
+        }
     }
 
     validateSignupState = async () => {
@@ -85,7 +98,7 @@ class SignUpScreen extends Component {
 
                 <View style={styles.btnEnterContainer}>
                     <TouchableOpacity style={styles.tchEnter} onPress={this.SignUpUser}>
-                        <Text style={styles.txtEnter}> SignUp</Text>
+                        <Text style={styles.txtEnter}> Next</Text>
                     </TouchableOpacity>
                 </View>
             </View>

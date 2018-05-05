@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableHighlight, Modal, View, Text, StyleSheet, Button, TouchableOpacity, Image, TextInput, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
-import { setUser } from '../actions';
 import { bindActionCreators } from 'redux'
 import stylesheet from '../styles/signUpStyle';
 import CameraRollPicker from 'react-native-camera-roll-picker';
@@ -13,8 +12,6 @@ class ImageUploadScreen extends Component {
     static navigationOptions = {
         title: 'Select Profile Image',
     };
-    componentWillMount() {
-    }
     constructor(props) {
         super(props);
         this.state = {
@@ -37,8 +34,10 @@ class ImageUploadScreen extends Component {
         }).catch((error) => {
             alert('camera permission required !!!');
             this.props.navigation.navigate('ImageUpload');
-        });;
+        });
+
     }
+
 
     getSelectedImage(image) {
         this.setState({ image: image });
@@ -46,12 +45,22 @@ class ImageUploadScreen extends Component {
     saveProfileImage() {
         let image = this.state.image;
         let imagePath = this.state.image[0].uri;
-        const url = 'http://192.168.1.208:3000/postImage';
+        const url = 'http://192.168.1.208:3000/userSignUp';
         let body = new FormData();
+        let navigation = this.props.navigation;
+        let customImageName = this.props.userData.user.mobile + '.jpg';
+
+        let user = {
+            username: this.props.userData.user.username,
+            mobile: this.props.userData.user.mobile
+        }
+
+
+        body.append('user', JSON.stringify(user));
 
         body.append('profilepic', {
             uri: imagePath,
-            name: `photo.jpg`,
+            name: customImageName,
             type: `image/jpg`
         });
 
@@ -63,18 +72,19 @@ class ImageUploadScreen extends Component {
             }
         }
         fetch(url, fetchData)
-            .then(function (response) {
+            .then((response) => {
                 if (response.status == 200) {
-                    alert('Image upload successful !!!');
+                    initiateSignUp();
+                    navigation.navigate('Home');
                 }
                 else {
-                    console.log('fail ');
-                    alert('Image upload successful !!!');
+                    console.log('fail ', response.status);
+                    alert('Image upload failed !!!');
                 }
             }).catch((err) => {
-                alert('Image upload successful !!!');
                 console.log('err ', err);
-        });
+                alert('Image upload failed !!!');
+            });
     }
 
     render() {
@@ -97,4 +107,17 @@ class ImageUploadScreen extends Component {
 
 
 
-export default ImageUploadScreen;
+initiateSignUp = async () => {
+    await AsyncStorage.setItem('signUpCompleteFlag', 'true');
+};
+
+
+
+function mapStateToProps(state) {
+    return {
+        userData: state.userReducer
+    }
+}
+
+
+export default connect(mapStateToProps, {})(ImageUploadScreen);

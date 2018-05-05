@@ -1,9 +1,13 @@
-import { GET_CHAT, POST_CHAT, FETCH_USER, SET_USER, SET_SIGNUP_FLAG, GET_SIGNUP_FLAG } from '../actions/actionType';
+import { GET_CHAT, POST_CHAT, GET_USER, SET_USER, SET_SIGNUP_FLAG, GET_SIGNUP_FLAG,SUBMIT_USER } from '../actions/actionType';
 
 const initialState = {
     user: {
         username: '',
-        mobile: ''
+        mobile: '',
+        profileImage : ''
+
+    },
+    fetchedUser : {
 
     },
     init_signup_flag: false,
@@ -17,8 +21,9 @@ export default function (state = initialState, action) {
             user: action.payload,
             is_signup_complete: true
         };
-        case FETCH_USER: return {
-            ...state
+        case GET_USER: return {
+            ...state,
+            fetchedUser: action.payload
         };
         case SET_SIGNUP_FLAG: return {
             ...state,
