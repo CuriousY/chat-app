@@ -19,8 +19,8 @@ class HomeScreen extends Component {
 
     }
 
-    _onPressButton() {
-        alert('clicked ');
+    _onPressButton(friend_mobile) {
+        this.props.navigation.navigate('ChatScreen', { friendMobile: friend_mobile });
     }
 
     componentWillMount() {
@@ -32,9 +32,9 @@ class HomeScreen extends Component {
             const isSignUpStarted = await AsyncStorage.getItem('signUpCompleteFlag');
             const mobile = await AsyncStorage.getItem('mobile');
 
-            if (isSignUpStarted) {                
-            console.log('fetch mob ', this.state.mobile);            
-             this.props.getUser(mobile);
+            if (isSignUpStarted) {
+                console.log('fetch mob ', this.state.mobile);
+                this.props.getUser(mobile);
             }
             else {
                 this.props.navigation.navigate('WelcomeScreen');
@@ -58,8 +58,9 @@ class HomeScreen extends Component {
 const UserView = (props) => {
     let user = props.props.user ? props.props.user : null;
     if (user) {
+        let friend_mobile = 9971300950;
         return (
-            <TouchableOpacity onPress={() => props.onPress()}>
+            <TouchableOpacity onPress={() => props.onPress(friend_mobile)}>
                 <View style={{
                     borderBottomWidth: 1, backgroundColor: '#E1BEE7', height: 50, flexDirection: 'row'
                 }}>

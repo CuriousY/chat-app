@@ -16,14 +16,10 @@ import WelcomeScreen from './app/containers/welcome';
 import SignUpScreen from './app/containers/signup';
 import HomeScreen from './app/containers/home';
 import ImageUploadScreen from './app/containers/imageupload'
+import ChatScreen from './app/containers/chatscreen'
 
 
-class OtherScreen extends React.Component {
-
-}
-
-
-const AppStack = StackNavigator({ Home: HomeScreen, Other: OtherScreen });
+const AppStack = StackNavigator({ Home: HomeScreen, ChatScreen: ChatScreen });
 const AuthStack = StackNavigator({ SignUp: SignUpScreen, ImageUpload: ImageUploadScreen });
 
 const AppNavigator = SwitchNavigator(
