@@ -48,40 +48,49 @@ class HomeScreen extends Component {
         return (
             <View style={{ height: 'auto' }}>
                 <UserView props={this.props.currentUser} onPress={this._onPressButton} />
-                <UserView props={this.props.currentUser} onPress={this._onPressButton} />
             </View>
 
         )
     }
 }
 
-const UserView = (props) => {
-    let user = props.props.user ? props.props.user : null;
-    if (user) {
-        let friend_mobile = 9971300950;
-        return (
-            <TouchableOpacity onPress={() => props.onPress(friend_mobile)}>
-                <View style={{
-                    borderBottomWidth: 1, backgroundColor: '#E1BEE7', height: 50, flexDirection: 'row'
-                }}>
-                    <View>
-                        <Image style={{ width: 40, height: 40, borderRadius: 30, marginTop: 2 }}
-                            source={{ uri: `http://192.168.1.208:3000/${user.imagepath}` }} />
-                    </View>
-                    <View style={{ alignSelf: 'flex-start' }}>
-                        <Text style={{ marginTop: 10 }}> Hi There</Text>
-                    </View>
+const UserView = (props) => {    
+    let friend_mobile = 9971300950;
+    // let user = props.props.user ? props.props.user : null;
+    // if (user) {
+    //     let friend_mobile = 9971300950;
+    //     return (
+    //         <TouchableOpacity onPress={() => props.onPress(friend_mobile)}>
+    //             <View style={{
+    //                 borderBottomWidth: 1, backgroundColor: '#E1BEE7', height: 50, flexDirection: 'row'
+    //             }}>
+    //                 <View>
+    //                     <Image style={{ width: 40, height: 40, borderRadius: 30, marginTop: 2 }}
+    //                         source={{ uri: `http://192.168.1.208:3000/${user.imagepath}` }} />
+    //                 </View>
+    //                 <View style={{ alignSelf: 'flex-start' }}>
+    //                     <Text style={{ marginTop: 10 }}> Hi There</Text>
+    //                 </View>
+    //             </View>
+    //         </TouchableOpacity>
+    //     )
+    // }
+    return (
+        <TouchableOpacity onPress={() => props.onPress(friend_mobile)}>
+            <View style={{
+                borderBottomWidth: 1, backgroundColor: '#E1BEE7', height: 50, flexDirection: 'row'
+            }}>
+                <View>
+                    <Image style={{ width: 40, height: 40, borderRadius: 30, marginTop: 2 }}
+                        source={{ uri: 'http://192.168.1.208:3000/uploads/9971300950.jpg'}} />
                 </View>
-            </TouchableOpacity>
-        )
-    }
-    else {
-        return (
-            <View style={{ flex: 1, flexDirection: 'row', marginTop: 10, width: 400 }}>
-                <Text> Not fetched </Text>
+                <View style={{ alignSelf: 'flex-start' }}>
+                    <Text style={{ marginTop: 10 }}>Nitesh</Text>
+                </View>
             </View>
-        )
-    }
+        </TouchableOpacity>
+    )
+
 };
 
 const DefaultUserView = (props) => (

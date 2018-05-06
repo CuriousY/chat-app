@@ -1,18 +1,18 @@
-import { GET_CHAT, POST_CHAT, GET_USER, SET_USER, INITIATE_SIGNUP, GET_SIGNUP_FLAG, SUBMIT_USER } from './actionType';
+import { GET_CHAT, POST_CHAT, GET_USER, SET_MESSAGE,SET_USER, INITIATE_SIGNUP, GET_SIGNUP_FLAG, SUBMIT_USER } from './actionType';
 
 let defaultChat = [];
 let defaultUser = {};
 
-export const fetchChat = () => dispatch => {
+export const getChat = (chats) => dispatch => {
     dispatch({
         type: GET_CHAT,
-        payload: defaultChat
+        payload: chats
     });
 };
 
 export const postChat = (chat) => dispatch => {
     dispatch({
-        type: GET_CHAT,
+        type: POST_CHAT,
         payload: chat
     })
 }
@@ -56,3 +56,11 @@ export const getSignUpState = () => dispatch => {
         payload: defaultUser
     })
 }
+
+export const setMessage = (message) => dispatch => {
+    dispatch({
+        type: SET_MESSAGE,
+        payload: message
+    })
+}
+
