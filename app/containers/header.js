@@ -17,7 +17,7 @@ class HeaderTitle extends Component {
             const mobile = await AsyncStorage.getItem('mobile');
 
             if (isSignUpStarted) {
-                console.log('fetch mob header', this.state.mobile);
+                console.log('fetch mob header', mobile);
                 this.props.getUser(mobile);
             }
         } catch (error) {
@@ -42,7 +42,7 @@ const HeaderView = (props) => {
             }}>
                 <View style={{ alignSelf: 'flex-start', marginLeft: 20 }}>
                     <Image style={{ width: 50, height: 50, borderRadius: 30 }}
-                        source={{ uri: `http://192.168.1.208:3000/${user.imagepath}` }} />
+                        source={{ uri: `http://192.168.43.119:3000/${user.imagepath}` }} />
                 </View>
                 <View style={{ marginLeft: 20, marginTop: 10 }}>
                     <Text style={{ fontSize: 20, fontWeight: 'bold' }}>{user.username}</Text>

@@ -5,16 +5,13 @@ import { setUser, postChat, getChat, setMessage } from '../actions';
 import { bindActionCreators } from 'redux'
 import stylesheet from '../styles/chatScreenStyle';
 import openSocket from 'socket.io-client';
-import { SERVER_URL } from '../config'
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const styles = StyleSheet.create(stylesheet());
-const socket = openSocket(SERVER_URL);
-
+const socket = openSocket('http://192.168.43.119:3000');
 
 
 class ChatScreen extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -88,10 +85,11 @@ class ChatScreen extends Component {
     };
 
     static navigationOptions = {
-        title: 'Nitesh',
+        title: 'ChatWindow',
     };
 
     render() {
+        console.log('render ', this.props.chats.length);
         return (
             <View style={styles.container}>
                 <View style={{ flex: 0.9, backgroundColor: '#F3E5F5' }}>
@@ -100,16 +98,16 @@ class ChatScreen extends Component {
                 <View style={{
                     flex: 0.1,
                 }}>
-                    <KeyboardAvoidingView style={{ flex: 1 }} behavior='padding' keyboardVerticalOffset={4} >
+                    <KeyboardAvoidingView style={{flex: 1}} behavior='padding' keyboardVerticalOffset={4} >
                         <View style={styles.bottomContainer}>
-                            <TextInput underlineColorAndroid='transparent' value={this.state.chatMessage} clearTextOnFocus={true}
-                                style={styles.bottomTextInput} onChangeText={(text) => { this.onChatTextChange(text) }} placeholder="Start chatting" />
-                            <TouchableOpacity style={styles.bottomTouchable} onPress={this.postChatMessage}>
-                                <Text style={styles.bottomButtonText}> send</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <TextInput underlineColorAndroid='transparent' value={this.state.chatMessage} clearTextOnFocus={true}
+                            style={styles.bottomTextInput} onChangeText={(text) => { this.onChatTextChange(text) }} placeholder="Start chatting" />
+                        <TouchableOpacity style={styles.bottomTouchable} onPress={this.postChatMessage}>
+                            <Text style={styles.bottomButtonText}> send</Text>
+                        </TouchableOpacity>
+                    </View>
                     </KeyboardAvoidingView>
-                </View>
+            </View>
             </View >
         )
     }

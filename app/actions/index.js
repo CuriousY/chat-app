@@ -1,12 +1,14 @@
-import { GET_CHAT, POST_CHAT, GET_USER, SET_MESSAGE,SET_USER, INITIATE_SIGNUP, GET_SIGNUP_FLAG, SUBMIT_USER } from './actionType';
+import { GET_CHAT, POST_CHAT, GET_USER, SET_MESSAGE, SET_USER, INITIATE_SIGNUP, GET_SIGNUP_FLAG, SUBMIT_USER } from './actionType';
+
+import { SERVER_URL } from '../config'
 
 let defaultChat = [];
 let defaultUser = {};
 
-export const getChat = (chats) => dispatch => {
+export const getChat = (chat) => dispatch => {
     dispatch({
         type: GET_CHAT,
-        payload: chats
+        payload: chat
     });
 };
 
@@ -19,7 +21,7 @@ export const postChat = (chat) => dispatch => {
 
 export const getUser = (mobile) => dispatch => {
     console.log('mobile ', mobile);
-    fetch('http://192.168.1.208:3000/getUserDetails?mobile='+mobile)
+    fetch(SERVER_URL + '/getUserDetails?mobile=' + mobile)
         .then(res => res.json())
         .then(user =>
             dispatch({

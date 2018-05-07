@@ -1,4 +1,4 @@
-import { GET_CHAT, POST_CHAT,SET_MESSAGE, GET_USER, SET_USER, SET_SIGNUP_FLAG, GET_SIGNUP_FLAG, SUBMIT_USER } from '../actions/actionType';
+import { GET_CHAT, POST_CHAT, SET_MESSAGE, GET_USER, SET_USER, SET_SIGNUP_FLAG, GET_SIGNUP_FLAG, SUBMIT_USER } from '../actions/actionType';
 
 const initialState = {
     user: {
@@ -13,24 +13,28 @@ const initialState = {
     init_signup_flag: false,
     is_signup_complete: false,
     chats: [],
-    chatItem:{},
-    message : ''
+    chatItem: {},
+    message: '',
+    endpoint:''
 }
 
 export default function (state = initialState, action) {
+    console.log('reducer ', action.payload);
     switch (action.type) {
         case SET_USER: return {
             ...state,
             user: action.payload,
             is_signup_complete: true
         };
-        case GET_CHAT: return {
+        case GET_CHAT:
+            let chats = state.chats;
+            return {
+                ...state,
+                chats: [...state.chats, action.payload]
+            };
+        case POST_CHAT: return {
             ...state,
-            chats:action.payload
-        };
-        case POST_CHAT : return {
-            ...state,
-            chatItem:action.payload
+            chats: [...state.chats, action.payload]
         };
         case GET_USER: return {
             ...state,
@@ -43,9 +47,9 @@ export default function (state = initialState, action) {
         case GET_SIGNUP_FLAG: return {
             ...state
         };
-        case SET_MESSAGE : return {
+        case SET_MESSAGE: return {
             ...state,
-            message:action.payload
+            message: action.payload
         }
         default:
             return state;

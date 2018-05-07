@@ -1,14 +1,28 @@
 export default function stylesheet() {
     return ({
+        scrollView: {
+            flex: 1,
+            justifyContent: 'space-between'
+        },
+        cn1: {
+            flex:1
+        },
+        container: {
+            flex: 1,
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            backgroundColor: 'blue'
+        },
         bottomContainer: {
             flexDirection: 'row',
-            height: 40,
+            flex: 1,
             justifyContent: 'space-between',
             backgroundColor: '#F44336',
-            alignSelf: 'flex-end'
+            alignSelf: 'flex-end',
+            marginBottom: 5
         },
         bottomTextInput: {
-            height: 40,
+            height: 60,
             color: '#4a148c',
             fontSize: 15,
             backgroundColor: '#fff',
@@ -20,7 +34,8 @@ export default function stylesheet() {
         },
         bottomTouchable: {
             backgroundColor: '#8e24aa',
-            height: 40,
+            height: 60,            
+            paddingTop:15,
             width: 70,
             alignSelf: 'flex-end',
             paddingBottom: 5
@@ -29,7 +44,6 @@ export default function stylesheet() {
             fontSize: 20,
             fontWeight: 'bold',
             color: '#F3E5F5',
-            paddingTop: 5,
             paddingLeft: 5
         }
     })

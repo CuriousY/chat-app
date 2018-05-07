@@ -55,7 +55,6 @@ class SignUpScreen extends Component {
 
     setMobileInAsyncStorage = async (mobile) => {
         try {
-            console.log('set mobile ', mobile);
             await AsyncStorage.setItem('mobile', mobile);
         }
         catch (err) {

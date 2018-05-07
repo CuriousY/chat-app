@@ -17,17 +17,20 @@ import SignUpScreen from './app/containers/signup';
 import HomeScreen from './app/containers/home';
 import ImageUploadScreen from './app/containers/imageupload'
 import ChatScreen from './app/containers/chatscreen'
+import TesterScreen from './app/containers/tester'
 
 
 const AppStack = StackNavigator({ Home: HomeScreen, ChatScreen: ChatScreen });
 const AuthStack = StackNavigator({ SignUp: SignUpScreen, ImageUpload: ImageUploadScreen });
+const TestStack = StackNavigator({ TesterScreen: TesterScreen});
 
 const AppNavigator = SwitchNavigator(
   {
+    TesterScreen:TestStack,
     WelcomeScreen: WelcomeScreen,
     App: AppStack,
-    Auth: AuthStack,
-  },
+    Auth: AuthStack
+  },  
   {
     initialRouteName: 'WelcomeScreen',
   }

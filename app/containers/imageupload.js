@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import stylesheet from '../styles/signUpStyle';
 import CameraRollPicker from 'react-native-camera-roll-picker';
 import { Permissions } from 'expo';
+import { SERVER_URL } from '../config'
 
 const styles = StyleSheet.create(stylesheet());
 
@@ -30,7 +31,6 @@ class ImageUploadScreen extends Component {
 
     componentWillMount() {
         Permissions.askAsync(Permissions.CAMERA_ROLL).then(({ status }) => {
-            console.log('camera')
         }).catch((error) => {
             alert('camera permission required !!!');
             this.props.navigation.navigate('ImageUpload');
@@ -45,7 +45,7 @@ class ImageUploadScreen extends Component {
     saveProfileImage() {
         let image = this.state.image;
         let imagePath = this.state.image[0].uri;
-        const url = 'http://192.168.1.208:3000/userSignUp';
+        const url = SERVER_URL + '/userSignUp';
         let body = new FormData();
         let navigation = this.props.navigation;
         let customImageName = this.props.userData.user.mobile + '.jpg';

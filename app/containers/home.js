@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity, Image, AsyncStorage } from 'react-native';
 import { connect } from 'react-redux';
 import { getUser } from '../actions';
-import HeaderTitle from './header'
+import HeaderTitle from './header';
+import { SERVER_URL } from '../config'
 
 class HomeScreen extends Component {
     static navigationOptions = {
@@ -33,7 +34,6 @@ class HomeScreen extends Component {
             const mobile = await AsyncStorage.getItem('mobile');
 
             if (isSignUpStarted) {
-                console.log('fetch mob ', this.state.mobile);
                 this.props.getUser(mobile);
             }
             else {
@@ -82,7 +82,7 @@ const UserView = (props) => {
             }}>
                 <View>
                     <Image style={{ width: 40, height: 40, borderRadius: 30, marginTop: 2 }}
-                        source={{ uri: 'http://192.168.1.208:3000/uploads/9971300950.jpg'}} />
+                        source={{ uri: `${SERVER_URL}/uploads/9971300950.jpg`}} />
                 </View>
                 <View style={{ alignSelf: 'flex-start' }}>
                     <Text style={{ marginTop: 10 }}>Nitesh</Text>
