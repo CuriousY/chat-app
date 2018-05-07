@@ -1,1 +1,1 @@
-export const SERVER_URL = 'https://chatfam.herokuapp.com';
+export const SERVER_URL = 'https://chatfam.herokuapp.com/';

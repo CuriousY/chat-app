@@ -85,7 +85,7 @@ const UserView = (props) => {
                         source={{ uri: `${SERVER_URL}/uploads/9971300950.jpg`}} />
                 </View>
                 <View style={{ alignSelf: 'flex-start' }}>
-                    <Text style={{ marginTop: 10 }}>Nitesh</Text>
+                    <Text style={{ marginTop: 10 }}>Family</Text>
                 </View>
             </View>
         </TouchableOpacity>
